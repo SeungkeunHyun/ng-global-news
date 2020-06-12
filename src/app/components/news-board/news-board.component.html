@@ -1,0 +1,4 @@
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab *ngFor="let rss of newsRSS" label="{{rss.label}}" (click)="fetchNews($event)">{{rss.label}}</mat-tab>
+</mat-tab-group>
+
