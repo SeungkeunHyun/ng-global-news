@@ -10,6 +10,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { NewsBoardComponent } from './components/news-board/news-board.component';
 import { RSSEditorComponent } from './components/rss-editor/rss-editor.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

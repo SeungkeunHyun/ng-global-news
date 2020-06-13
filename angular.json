@@ -32,7 +32,7 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/rss-parser/dist/rss-parser.min.js"]
           },
           "configurations": {
             "production": {
@@ -98,7 +98,7 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/rss-parser/dist/rss-parser.min.js"]
           }
         },
         "lint": {

@@ -5,9 +5,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpClientService {
+  private CORS_PROXY:string = "https://cors-anywhere.herokuapp.com/";
+
   constructor(private httpClient: HttpClient) { }
 
-  get(uri: string) {
-    return this.httpClient.get(uri);
+  get(uri: string, header?: Object) {
+    return this.httpClient.get(this.CORS_PROXY + uri, header);
   }
 }

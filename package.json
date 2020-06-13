@@ -22,8 +22,12 @@
     "@angular/platform-browser-dynamic": "~9.1.11",
     "@angular/router": "~9.1.11",
     "bootstrap": "4.1.1",
+    "ngx-xml2json": "^1.0.2",
+    "rss-parser": "^3.8.0",
     "rxjs": "~6.5.4",
+    "timers": "^0.1.1",
     "tslib": "^1.10.0",
+    "xml2js": "^0.4.23",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
