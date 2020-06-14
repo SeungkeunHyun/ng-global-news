@@ -1,6 +1,7 @@
 export class RSSFeed {
     title: string;
     description: string;
+    publishedAt: Date;
     image: string;
     item: Item[];
 }
@@ -13,3 +14,6 @@ export class Item {
     pubDate: Date;
 }
 
+export interface IFeedMap {
+    [id: number]: RSSFeed; 
+}

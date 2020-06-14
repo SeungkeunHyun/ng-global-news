@@ -30,3 +30,4 @@ module.exports = function (config) {
     restartOnFileChange: true
   });
 };
+module.exports = require('readable-stream');

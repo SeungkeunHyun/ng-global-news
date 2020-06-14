@@ -10,7 +10,7 @@ const routes: Routes = [{path: 'news-board', component: NewsBoardComponent}
 , {path: '**', component: NewsBoardComponent}];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

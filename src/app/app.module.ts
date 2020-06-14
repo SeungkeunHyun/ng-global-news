@@ -11,14 +11,24 @@ import { NewsBoardComponent } from './components/news-board/news-board.component
 import { RSSEditorComponent } from './components/rss-editor/rss-editor.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
-
+import {MatIconModule} from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { DialogBoxComponent } from './components/dialog-box/dialog-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     NewsBoardComponent,
-    RSSEditorComponent
+    RSSEditorComponent,
+    DialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +37,16 @@ import {MatCardModule} from '@angular/material/card';
     MatToolbarModule,
     MatTabsModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    RouterModule,
+    MatListModule,
+    MatTableModule,
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule    
   ],
   providers: [],
   bootstrap: [AppComponent]
