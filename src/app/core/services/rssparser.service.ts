@@ -13,13 +13,12 @@ import { RSSLink } from '../models/rsslink';
   providedIn: 'root'
 })
 export class RSSParserService implements OnInit {
-  private CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
   private parseXML = xml2js.parseString;
   private ta = document.createElement('textarea');
   private corsProxy = 'https://cors-anywhere.herokuapp.com/';
   private feeds: IFeedMap;
   private rssLinks: RSSLink[];
-  private rssLinkEndpoint = 'http://localhost/php/rest-sqlite/rss_feeds.php/feeds';
+  private rssLinkEndpoint = '/php/rest-sqlite/rss_feeds.php/feeds';
   constructor(private httpClient: HttpClient, private ngxXml2jsonService: NgxXml2jsonService) {
     this.feeds = {};
    }
