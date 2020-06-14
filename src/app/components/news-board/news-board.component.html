@@ -1,11 +1,11 @@
-<mat-tab-group mat-align-tabs="start">
-    <mat-tab *ngFor="let rss of newsRSS" (click)="fetchNews($event)">
+<mat-tab-group *ngIf="newsRSS" mat-align-tabs="start"  (selectedTabChange)="fetchNews($event)">
+    <mat-tab *ngFor="let rss of newsRSS">
         <ng-template mat-tab-label>
-            <img src="{{newsContent[rss.label].image}}" title="{{rss.label}}">
+            <img src="{{newsContent[rss.id].image}}" title="{{rss.label}}">
         </ng-template>
-        <h1>{{newsContent[rss.label].title}}</h1>
-        <p>{{newsContent[rss.label].description}}</p>
-        <mat-card *ngFor="let item of newsContent[rss.label].item" class="example-card">
+        <h1>{{newsContent[rss.id].title}}</h1>
+        <p>{{newsContent[rss.id].description}} <a target="_blank" href="{{curLink.link}}"><mat-icon>rss_feed</mat-icon></a></p>
+        <mat-card *ngFor="let item of newsContent[rss.id].item" class="example-card">
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title><a href='{{item.link}}' target='newsWindow' [innerHTML]="item.title"></a></mat-card-title>
