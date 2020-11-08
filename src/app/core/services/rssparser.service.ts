@@ -28,15 +28,14 @@ export class RSSParserService implements OnInit {
 
   readRSSFeed(rl: RSSLink): Observable<RSSFeed> {
     if(this.feeds[rl.id] != undefined) {
-      console.log(this.feeds[rl.id]);
+      console.log('refresh or not', this.feeds[rl.id]);
       return new Observable(observer => observer.next(this.feeds[rl.id]));
     } else {
       return this.httpClient.get(this.corsProxy + rl.link, {responseType: 'text'}).pipe(map((feed:string) => {
         const parser = new DOMParser();
         const obj = parser.parseFromString(feed, "application/xml");
         console.log('XMLDocument', obj);
-        this.feeds[rl.id] = this.mapRSSFeed(obj);
-        console.log(this.feeds[rl.id]);        
+        this.feeds[rl.id] = this.mapRSSFeed(rl, obj);
         rl.lastUpdated = this.feeds[rl.id].publishedAt;
         this.updateJSON(rl).subscribe(res => console.log("Update result: ", res));
         return this.feeds[rl.id];
@@ -91,7 +90,6 @@ export class RSSParserService implements OnInit {
 
   mapRSS(doc: XMLDocument, rssFeed: RSSFeed) {
     const channel = doc.querySelector('rss channel');
-    rssFeed.publishedAt = moment().subtract(parseInt(this.getContent(channel, 'ttl')), 'minutes').toDate();
     rssFeed.title = this.getContent(channel,'title');
     rssFeed.description = this.getContent(channel,'description');
     rssFeed.image = this.getContent(channel,'image url');
@@ -109,7 +107,7 @@ export class RSSParserService implements OnInit {
     const feed = doc.querySelector('feed');
     rssFeed.title = this.getContent(feed, 'title');
     rssFeed.description = this.getContent(feed, 'subtitle');
-    rssFeed.publishedAt = new Date(this.getContent(feed, 'updated'));
+    //rssFeed.publishedAt = new Date(this.getContent(feed, 'updated')).toISOString();
     rssFeed.image = this.getContent(feed, 'icon');
     feed.querySelectorAll('entry').forEach(it => {
       const item = new Item();
@@ -121,12 +119,26 @@ export class RSSParserService implements OnInit {
     });
   }
 
-  mapRSSFeed(doc: XMLDocument): RSSFeed {
+  mapRSSFeed(rssLink: RSSLink, doc: XMLDocument): RSSFeed {
     const rssFeed = new RSSFeed();
     rssFeed.item = [];
     switch(doc.documentElement.tagName) {
       case 'rss':
         this.mapRSS(doc, rssFeed);
+        const channel = doc.querySelector('rss channel');
+        let ttl = this.getContent(channel, 'ttl');    
+        if(ttl === '') {
+          ttl = '10';
+        } 
+        rssLink.ttl = parseInt(ttl);
+        if(channel.querySelector('lastBuildDate') != null) {
+          rssLink.lastUpdated = new Date(this.getContent(channel, 'lastBuildDate')).toISOString();
+        } else if(channel.querySelector('pubDate') != null) {
+          rssLink.lastUpdated = new Date(this.getContent(channel, 'pubDate')).toISOString();
+        } else {
+          rssLink.lastUpdated = moment().subtract(rssLink.ttl, 'minutes').toISOString();
+        }
+        rssFeed.publishedAt = rssLink.lastUpdated;
         break;
       case 'feed':
         this.mapFeed(doc, rssFeed);

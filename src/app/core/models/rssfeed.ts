@@ -1,7 +1,7 @@
 export class RSSFeed {
     title: string;
     description: string;
-    publishedAt: Date;
+    publishedAt: string;
     image: string;
     item: Item[];
 }

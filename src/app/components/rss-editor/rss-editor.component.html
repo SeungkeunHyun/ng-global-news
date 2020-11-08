@@ -1,11 +1,12 @@
 <div class="container text-center">
     <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button>
     <mat-table *ngIf="rssLinks" #rssTable [dataSource]="rssLinks" class="mat-elevation-z8">
+        <!--// 
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
         </ng-container>
-
+        //-->
         <ng-container matColumnDef="label">
             <mat-header-cell *matHeaderCellDef> Label </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.label}} </mat-cell>

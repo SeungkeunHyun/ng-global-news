@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ɵCompiler_compileModuleSync__POST_R3__ } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RSSParserService } from 'src/app/core/services/rssparser.service';
 import { RSSLink } from 'src/app/core/models/rsslink';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,7 +22,7 @@ export class RSSEditorComponent implements OnInit {
   ngOnInit(): void {
     this.rssService.getFeeds().subscribe(feeds => {
       this.rssLinks = feeds;
-      this.columnsToDisplay = Object.getOwnPropertyNames(this.rssLinks[0]);
+      this.columnsToDisplay = Object.getOwnPropertyNames(this.rssLinks[0]).filter(fld => ['id','ttl'].indexOf(fld) == -1);
       this.columnsToDisplay.push('action');
       console.log(this.rssLinks, this.columnsToDisplay);      
     });
