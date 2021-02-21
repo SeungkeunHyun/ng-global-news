@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpClientService {
-  private CORS_PROXY:string = "https://cors-anywhere.herokuapp.com/";
+  private CORS_PROXY:string = "https://phpfetch.herokuapp.com/fetchURL.php?uri=";
 
   constructor(private httpClient: HttpClient) { }
 

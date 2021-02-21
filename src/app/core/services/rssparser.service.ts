@@ -39,7 +39,7 @@ export class RSSParserService implements OnInit {
         rl.lastUpdated = this.feeds[rl.id].publishedAt;
         this.updateJSON(rl).subscribe(res => console.log("Update result: ", res));
         return this.feeds[rl.id];
-      }));
+      }))
     }
   }
 
