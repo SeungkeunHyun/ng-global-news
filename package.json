@@ -21,7 +21,7 @@
     "@angular/platform-browser": "^9.1.12",
     "@angular/platform-browser-dynamic": "^9.1.12",
     "@angular/router": "^9.1.12",
-    "bootstrap": "4.1.1",
+    "bootstrap": "4.3.1",
     "moment": "^2.29.1",
     "ngx-xml2json": "^1.0.2",
     "rss-parser": "^3.9.0",
